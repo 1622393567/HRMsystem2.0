@@ -59,13 +59,13 @@ function handleResult() {
                 if(temp==1){
                     var str=rel.menutree[i][j].power_name.toString();
                     var urls=rel.menutree[i][j].url;
-                    $("#nav li ul").append("<li><a onclick='testif(\""+urls+"\")' class><cite style='inline;'>"+str+"</cite></a></li>")
+                    $("#nav li ul").append("<li><a onclick='pagejump(\""+urls+"\")' class><cite style='inline;'>"+str+"</cite></a></li>")
                 }
                 else{
                     var urls=rel.menutree[i][j].url.toString();
                     var str=rel.menutree[i][j].power_name.toString();
                     console.log("这是子节点链接:"+urls);
-                    sonli=$("<li><a onclick='testif(\""+urls+"\")' class><cite>"+str+"</cite></a> </li>");
+                    sonli=$("<li><a onclick='pagejump(\""+urls+"\")' class><cite>"+str+"</cite></a> </li>");
                     //这里需要转义字符
                     sonul.append(sonli);
                     console.log("这是子节点:"+rel.menutree[i][j].power_name.toString());
@@ -83,8 +83,8 @@ function handleResult() {
     }
 }
 
+//这个函数不要删
 
-
-function testif(urls) {
-    document.getElementById("MyApplicationPage").src=urls;
+function pagejump(urls) {
+        document.getElementById("MyApplicationPage").src=urls;
 }
