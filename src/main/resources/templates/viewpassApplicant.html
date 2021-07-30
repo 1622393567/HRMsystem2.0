@@ -71,11 +71,7 @@
 </script>
 
 <body>
-<div id="wrapper">
-    </div>
-
-    <div id="content" >
-        <div class="x-nav">
+<div class="x-nav">
           <span class="layui-breadcrumb">
               <label><a href="viewApplicant">应聘者</a>
             <a href="viewpassApplicant">招聘审核</a>
@@ -83,9 +79,13 @@
             <a href="viewreportApplicant">人力上报</a>
                   <a href="viewdemands">职位需求</a></label>
           </span>
-            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
-            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
-        </div>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div id="wrapper">
+
+    <div id="content" >
+
 
         <div id="addsearch" th:width="320px" th:height="60px">
             <label><form action="/applicant/searchApplicant" th:action="${'findpassApplicant?keyVlaue='}+${keyValue}" method="get">

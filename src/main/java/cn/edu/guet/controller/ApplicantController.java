@@ -310,6 +310,8 @@ public class ApplicantController {
     @GetMapping("/findreportApplicant")
     public String findreport(Model model,@ModelAttribute(value="keyValue")String keyValue) {
         List<Applicant> applicantList=applicantService.findreportApplicant(keyValue);
+        List<Demands> demand=demandsService.Getempid();
+        model.addAttribute("demands",demand);
         model.addAttribute("pageInfo",applicantList);
         return "viewreportApplicant";
     }
@@ -418,8 +420,6 @@ public class ApplicantController {
         System.out.println("开始添加");
         demandsService.addDemands(demand);
         System.out.println("添加成功");
-        List<Demands> demandsList=demandsService.Getempid();
-        model.addAttribute("pageInfo",demandsList);
-        return "viewdemands";
+        return "redirect:viewdemands";
     }
 }
