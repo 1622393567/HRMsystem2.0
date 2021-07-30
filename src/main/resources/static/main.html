@@ -1,4 +1,4 @@
-<html class="x-admin-sm"><head>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org"><head>
         <meta charset="UTF-8">
         <title>hrmmian</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -29,12 +29,16 @@
         <div class="container">
             <div class="logo">
                 <a href="main.html">HRM管理信息系统</a></div>
-        </div>
+        <ul class="layui-nav right" lay-filter="">
+            <li class="layui-nav-item to-index">
+                <a href="/logout">退出</a></li>
+            <span class="layui-nav-bar" style="left: 136.688px; top: 40px; width: 0px; opacity: 0;"></span></ul>
         <!-- 顶部结束 onclick="xadmin.add_tab('统计页面','welcome1.html')"
         onclick="xadmin.add_tab('会员列表(静态表格)','member-list.html')"
         onclick="xadmin.add_tab('会员列表(动态表格)','member-list1.html',true)"
         onclick="xadmin.add_tab('会员删除','member-del.html')"
         -->
+    </div>
         <!-- 中部开始 -->
         <!-- 左侧菜单开始 -->
         <div class="left-nav">
@@ -57,7 +61,7 @@
         <!-- 右侧主体开始 -->
         <div class="page-content">
             <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
-                <iframe  id="MyApplicationPage" frameborder="0" src="admin-list.html" id="iframe3" style="width:100%;height:100%;position: absolute"></iframe>
+                <iframe  id="MyApplicationPage" frameborder="0" src="" id="iframe3" style="width:100%;height:100%;position: absolute"></iframe>
             </div>
 
 			

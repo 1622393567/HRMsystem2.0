@@ -21,10 +21,10 @@ public class AccountController {
     @Autowired
     private EmpAccountService accountService;
 
-    @RequestMapping("/login.do")
-    public String login() {
-        return "login";
-    }
+    //@RequestMapping("/login.do")
+    //public String login() {
+   //     return "login";
+   // }
     @RequestMapping("/checkLogin.do")
     @ResponseBody
     public Result checkLogin(EmpAccount emp, HttpServletRequest request, HttpSession session) throws Exception {
@@ -32,9 +32,12 @@ public class AccountController {
         Result result=accountService.checkLogin(emp.getEmp_id(),emp.getEmp_password());
         if(result.getRes().equals("enable")){
             String emp_id=emp.getEmp_id();
-            session.setAttribute(Sessionkey.SESSION_KEY,emp_id);
+            session.setAttribute(Sessionkey.SESSION_KEY,emp_id);//存一个字符串
+            return result;
+        }else{
+            return result;
         }
-        return result;
+
     }
 
 
@@ -46,29 +49,5 @@ public class AccountController {
         return "logout success";
     }
 
-   /* @RequestMapping(value = "Main.do")
-    public MenuTree accountPower() throws Exception {
-        return accountService.accountPower();
-    }
-
-    */
-  /*  @RequestMapping("user/addUser.do")
-    public String addUser(Users user){
-        System.out.println("添加用户");
-        System.out.println(user.getUsername());
-        System.out.println(user.getUserpassword());
-        System.out.println(user.getAge());
-        return "forward:viewUser.jsp";
-    }
-    @RequestMapping("user/viewUser.do")
-    public Users viewUser(){
-        Users users=new Users();
-        users.setUsername("lisi");
-        users.setUserpassword("ls1234");
-        users.setAge(33);
-        return users;
-    }
-
-   */
 
 }
