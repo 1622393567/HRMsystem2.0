@@ -8,7 +8,7 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
         <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/page.js"></script>
+        <script type="text/javascript" src="/js/page.js"></script>
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/xadmin.css">
     <script src="/lib/layui/layui.js" charset="utf-8"></script>
@@ -87,14 +87,14 @@
     <div id="content" >
 
         <div>
-        <label id="addsearch" th:width="320px" th:height="60px">
+        <label id="addsearch" >
             <form action="/applicant/searchApplicant" th:action="${'searchApplicant?keyVlaue='}+${keyValue}" method="get">
-            <input  th:width="250px" th:height="50px" name="keyValue" th:value="${keyValue}">
+            <input   name="keyValue" th:value="${keyValue}">
             <input class="btn btn-primary" type="submit" value="查询">
             </form>
         </label>
             <label id="filtrate"><form  th:action="${'filtrateApplicant?keyVlaue='}+${key}" method="get">
-                <select width="300px" height="50px" type="text" th:value="${key}" name="key">
+                <select class="layui-select" width="300px" height="50px" type="text" th:value="${key}" name="key">
                     <option class="form-control" >销售部</option>
                     <option class="form-control" >产品部</option>
                     <option class="form-control" >人力资源部</option>

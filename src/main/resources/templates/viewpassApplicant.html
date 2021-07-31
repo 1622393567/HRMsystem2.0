@@ -8,7 +8,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
     <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/page.js"></script>
+    <script type="text/javascript" src="/js/page.js"></script>
     <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/xadmin.css">
     <script src="/lib/layui/layui.js" charset="utf-8"></script>
@@ -94,7 +94,7 @@
             </form>
             </label>
             <label id="filtrate"><form  th:action="${'filtratepassApplicant?keyVlaue='}+${key1}" method="get">
-                <select width="300px" height="50px" type="text" th:value="${key1}" name="key1">
+                <select class="layui-select" width="300px" height="50px" type="text" th:value="${key1}" name="key1">
                     <option class="form-control" >销售部</option>
                     <option class="form-control" >产品部</option>
                     <option class="form-control" >人力资源部</option>
