@@ -1,11 +1,22 @@
 package cn.edu.guet.bean;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 public class Demands {
    private int demand_key;
+
+   @Excel(name = "部门" ,orderNum = "0")
     private String dept_name;
+
+   @Excel(name = "员工号",orderNum = "1")
     private String emp_id;
+   @Excel(name = "部门id",orderNum = "2")
     private String  dept_id;
+
+   @Excel(name = "职位id",orderNum = "3")
     private String post_id;
+
+   @Excel(name = "需求职位",orderNum = "4")
     private String  job;
 
     public int getDemand_key() {

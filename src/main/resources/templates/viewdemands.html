@@ -91,6 +91,15 @@
             <button  type="button" class="btn btn-success" th:onclick="edit()">添加</button>
             <a class="btn btn-danger" id="dALL" href="#" onclick="deleteSomedemands()"> 删除 </a>
         </div>
+
+           <div class="filed">
+               <form th:action="@{'importDemands'}" method="post" enctype="multipart/form-data">
+                   <div >
+                       <input type="file" id="file" name="demandsfile" class="layui-input" placeholder="请输入文件名" >
+                   </div>
+                   <button class="btn btn-success" type="submit" >导入</button>
+               </form>
+           </div>
     </div>
 
     <!--数据   ------------------------------------------------------------------------------------------------------------------------>
@@ -105,7 +114,7 @@
                 <th style="text-align:center">员工号</th>
                 <th style="text-align:center">部门id</th>
                 <th style="text-align:center">职位id</th>
-                <th style="text-align:center">职位</th>
+                <th style="text-align:center">需求职位</th>
                 <th style="text-align:center">操作</th>
             </tr>
             <tbody id="adminTbody">

@@ -1,21 +1,54 @@
 package cn.edu.guet.bean;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 public class Applicant {
+
   public Integer applicant_info_key;
+
+    @Excel(name = "姓名",orderNum = "0")
   public String applicant_name;
+
+    @Excel(name = "性别",orderNum = "1")
   public String applicant_sex;
+
+    @Excel(name = "状态",orderNum = "2")
   public String applicant_state;
+
+    @Excel(name = "证件类型",orderNum = "3")
   public String applicant_identify_type;
+
+    @Excel(name = "证件号码",orderNum = "4")
   public String applicant_identify_number;
+
+    @Excel(name = "电话号码",orderNum = "5")
   public String applicant_phone_number;
+
+    @Excel(name = "邮箱",orderNum = "6")
   public String applicant_e_mail;
+
+    @Excel(name = "民族",orderNum = "7")
   public String applicant_nation;
+
+    @Excel(name = "籍贯",orderNum = "8")
   public String applicant_native_place;
+
+    @Excel(name = "生日",orderNum = "9")
   public String applicant_birthday;
+
+    @Excel(name = "居住地",orderNum = "10")
   public String applicant_location;
+
+    @Excel(name = "学历",orderNum = "11")
   public String applicant_edu_bgd;
+
+    @Excel(name = "招聘渠道",orderNum = "12")
   public String applicant_entry_way;
+
+    @Excel(name = "毕业学校",orderNum = "13")
   public String applicant_edu_school;
+
+    @Excel(name = "职位意向",orderNum = "14")
   public String applicant_post_intention;
   public String emp_id;
   public String dept_id;

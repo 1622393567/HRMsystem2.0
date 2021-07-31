@@ -6,16 +6,16 @@ import cn.edu.guet.bean.Demands;
 import cn.edu.guet.bll.ApplicantService;
 import cn.edu.guet.bll.DemandsService;
 import cn.edu.guet.utiltool.AdmitMailUtil;
+import cn.edu.guet.utiltool.FileUtil;
 import cn.edu.guet.utiltool.PassMailUtil;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -124,6 +124,56 @@ public class ApplicantController {
 
 
 
+    @PostMapping("/importApplicant")
+    public String  importExcel (@RequestParam("applicantfile") MultipartFile file) throws NotFoundException {
+        System.out.println(file);
+        List<Applicant> applicantLists = FileUtil.importExcel(file,0,1,Applicant.class);
+        for (Applicant applicants : applicantLists){
+            Applicant applicant =new Applicant();
+            applicant.setApplicant_name(applicants.getApplicant_name());
+            System.out.println(applicants.getApplicant_name());
+
+            applicant.setApplicant_sex(applicants.getApplicant_sex());
+            System.out.println(applicants.getApplicant_sex());
+
+            applicant.setApplicant_state(applicants.getApplicant_state());
+            System.out.println(applicants.getApplicant_state());
+
+            applicant.setApplicant_identify_type(applicants.getApplicant_identify_type());
+
+
+            applicant.setApplicant_identify_number(applicants.getApplicant_identify_number());
+            System.out.println(applicants.getApplicant_identify_number());
+
+
+            applicant.setApplicant_phone_number(applicants.getApplicant_phone_number());
+
+
+            applicant.setApplicant_e_mail(applicants.getApplicant_e_mail());
+
+            applicant.setApplicant_nation(applicants.getApplicant_nation());
+
+            applicant.setApplicant_native_place(applicants.getApplicant_native_place());
+
+            applicant.setApplicant_birthday(applicants.getApplicant_birthday());
+
+            applicant.setApplicant_location(applicants.getApplicant_location());
+
+            applicant.setApplicant_edu_bgd(applicants.getApplicant_edu_bgd());
+            System.out.println(applicants.getApplicant_edu_bgd());
+
+            applicant.setApplicant_entry_way(applicants.getApplicant_entry_way());
+
+            applicant.setApplicant_edu_school(applicants.getApplicant_edu_school());
+            System.out.println(applicants.getApplicant_edu_school());
+
+            applicant.setApplicant_post_intention(applicants.getApplicant_post_intention());
+
+            applicantService.addApplicant(applicant);
+        }
+        System.out.println("导入完成");
+        return "redirect:viewApplicant";
+    }
 
 
 
@@ -420,6 +470,23 @@ public class ApplicantController {
         System.out.println("开始添加");
         demandsService.addDemands(demand);
         System.out.println("添加成功");
+        return "redirect:viewdemands";
+    }
+
+    @PostMapping("/importDemands")
+    public String  importDemands (@RequestParam("demandsfile") MultipartFile file) throws NotFoundException {
+        System.out.println(file);
+        List<Demands> demandsList = FileUtil.importExcel(file,0,1,Demands.class);
+        for (Demands demands : demandsList){
+            Demands demand=new Demands();
+            demand.setDept_name(demands.getDept_name());
+            demand.setDept_id(demands.getDept_id());
+            demand.setEmp_id(demands.getEmp_id());
+            demand.setPost_id(demands.getPost_id());
+            demand.setJob(demands.getJob());
+            demandsService.addDemands(demand);
+        }
+        System.out.println("导入完成");
         return "redirect:viewdemands";
     }
 }
