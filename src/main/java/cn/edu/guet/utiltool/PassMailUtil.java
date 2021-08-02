@@ -34,7 +34,13 @@ public class PassMailUtil {
         message.setSubject("面试通知邮件:");
         // 设置邮件内容
 
-        message.setContent("<h2>面试通知！</h2><h3>"+name+",您好，仔细看过你的简历，我们觉得您适合我们公司的"+post+"的职位，请于。。。</h3>", "text/html;charset=UTF-8");
+        message.setContent("<h1>面试通知</h1><p><b>"+name+"</b></p><p>&nbsp;&nbsp;&nbsp;&nbsp;您好，仔细看过你的简历，欢迎您应聘本公司<b>"+post+
+                        "</b>的职位，您的学识、经历给我们留下了良好的印象。\n" +
+                        "    为了彼此进一步的了解,请您____月____日____点前来本公司参加正式面试。\n" +
+                        "</p>\n" +
+                        "<p>咨询电话:______________。</p>\n" +
+                        "<p>______人力资源部</p>"
+                , "text/html;charset=UTF-8");
         // 得到邮差对象
         Transport transport = session.getTransport();
         // 连接自己的邮箱账户

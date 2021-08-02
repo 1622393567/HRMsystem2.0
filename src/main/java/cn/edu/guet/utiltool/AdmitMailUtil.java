@@ -35,7 +35,15 @@ public class AdmitMailUtil {
             message.setSubject("通过面试邮件:");
             // 设置邮件内容
 
-            message.setContent("<h1>面试通过！</h1><h3>"+name+",您好，恭喜你面试通过，您被录用的部门是："+post+"，请在10天内到公司报到！</h3>", "text/html;charset=UTF-8");
+            message.setContent("<h1>面试通过</h1><p><b>"+name+"</b></p><p>&nbsp;&nbsp;&nbsp;&nbsp;您好，你通过了我们公司的面试，我们认为你很适合我们公司" +
+                            "<b>"+post+
+                            "</b>的职位，您的学识、经历给我们留下了良好的印象。\n" +
+                            " 成为我们大家庭的一员，工作地在是xxxxxx" +
+                            "</p>\n" +
+                            "<p>咨询电话:______________。</p>\n" +
+                            "<p>______人力资源部</p>",
+
+                    "text/html;charset=UTF-8");
             // 得到邮差对象
             Transport transport = session.getTransport();
             // 连接自己的邮箱账户
