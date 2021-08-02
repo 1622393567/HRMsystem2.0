@@ -41,12 +41,12 @@ public class AccountController {
     }
 
 
-    @ResponseBody
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         /* 删除 session 值 */
         session.removeAttribute(Sessionkey.SESSION_KEY);
-        return "logout success";
+        return "login.html";
     }
 
 
