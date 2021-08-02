@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.SalaryMapper">
+    <select id="viewSalary" parameterType="string" resultType="cn.edu.guet.bean.Salarysecond">
+        SELECT * FROM EMP_SALARY_TABLE order by EMP_SALARY_KEY desc
+    </select>
+
+    <insert id="importSalary" parameterType="cn.edu.guet.bean.Sendsalary">
+
+        insert into EMP_SALARY_TABLE(
+
+        EMP_ID,
+        EMP_BASIC_SALARY,
+        EMP_BONUS,
+        EMP_ADDWORK,
+        EMP_PUNISH,
+        EMP_INSURANCE,
+        EMP_TAX,
+        EMP_SHOULD_SALARY,
+        EMP_REAL_SALARY,
+        DATEM
+        )
+        values (
+
+        #{emp_id,jdbcType=VARCHAR},
+        #{emp_basic_salary,jdbcType=VARCHAR},
+        #{emp_bonus,jdbcType=VARCHAR},
+        #{emp_addwork,jdbcType=VARCHAR},
+        #{emp_punish,jdbcType=VARCHAR},
+        #{emp_insurance,jdbcType=VARCHAR},
+        #{emp_tax,jdbcType=VARCHAR},
+        #{emp_should_salary,jdbcType=VARCHAR},
+        #{emp_real_salary,jdbcType=VARCHAR},
+        #{datem,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>
+

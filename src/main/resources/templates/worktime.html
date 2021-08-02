@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>time</title>
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <style>
+      .ac {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    </style>
+</head>
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <label><a href="viewWorkTime">加班打卡</a>
+            <a href="viewAddkaoqin">加班考勤</a>
+            </label>
+          </span>
+</div>
+    <script>
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "y+": this.getFullYear, //年
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds() //秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        time=setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+    </script>
+<div class="ac">
+    <div id="dateTime"></div>
+    <form th:action="@{/worksignIn}" method="get" >
+
+        <input type="hidden" id="real_begin_time" name="real_begin_time"></input>
+        <br>
+        &nbsp;<input type="submit" onclick="getClickUp()" value="加班开始">
+    </form>
+
+    <form th:action="@{/worksignOut}" method="get" >
+        <input type="hidden" id="real_endding_time" name="real_endding_time"></input>
+        <br>
+        &nbsp;<input type="submit" onclick="getClickDown()" value="加班结束">
+    </form>
+</div>
+    <script>
+        function getClickUp(){
+            var dateTime = document.querySelector('#dateTime')
+            var time = dateTime.innerText.toString()
+            document.querySelector("#real_begin_time").value = time;
+        }
+        function getClickDown(){
+            var dateTime = document.querySelector('#dateTime')
+            var time = dateTime.innerText.toString()
+            document.querySelector("#real_endding_time").value = time;
+        }
+    </script>
+</body>
+</html>

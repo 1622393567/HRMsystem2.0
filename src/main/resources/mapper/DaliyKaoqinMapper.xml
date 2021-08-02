@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.DaliyKaoqinMapper">
+
+    <select id="viewDaliyKaoqin" resultType="cn.edu.guet.bean.DaliyKaoqin">
+        select a.*,b.emp_name from DAILY_WORK_TABLE a,EMPLOYEES_INFO_TABLE b where a.EMP_ID=b.EMP_ID ORDER BY DAILY_WORK_KEY desc
+    </select>
+
+    <select id="viewperDaliyKaoqin" resultType="cn.edu.guet.bean.DaliyKaoqin">
+        select a.*,b.emp_name from DAILY_WORK_TABLE a,EMPLOYEES_INFO_TABLE b where a.EMP_ID=b.EMP_ID and a.emp_id=#{emp_id,jdbcType=VARCHAR} ORDER BY DAILY_WORK_KEY desc
+    </select>
+
+    <select id="signIn" statementType="CALLABLE">
+        {call signin(#{emp_id,mode=IN,jdbcType=VARCHAR},#{work_begin_time,mode=IN,jdbcType=VARCHAR})}
+    </select>
+
+    <select id="signOut" statementType="CALLABLE">
+        {call signout(#{emp_id,mode=IN,jdbcType=VARCHAR},#{work_endding_time,mode=IN,jdbcType=VARCHAR})}
+    </select>
+
+
+    <select id="getByName" resultType="cn.edu.guet.bean.DaliyKaoqin">
+    select a.*
+from DAILY_WORK_TABLE a
+where CONCAT(dept_id,emp_id) like CONCAT('%',#{name,jdbcType=VARCHAR})
+    </select>
+
+    <select id="selectId" resultType="cn.edu.guet.bean.DaliyKaoqin">
+        select distinct emp_id from DAILY_WORK_TABLE
+    </select>
+
+    <select id="selectMonth" resultType="cn.edu.guet.bean.DaliyKaoqin">
+        select distinct month from DAILY_WORK_TABLE
+    </select>
+
+    <select id="worksignIn" statementType="CALLABLE">
+        {call worksignin(#{emp_id,mode=IN,jdbcType=VARCHAR},#{real_begin_time,mode=IN,jdbcType=VARCHAR})}
+    </select>
+
+    <select id="worksignOut" statementType="CALLABLE">
+        {call worksignout(#{emp_id,mode=IN,jdbcType=VARCHAR},#{real_endding_time,mode=IN,jdbcType=VARCHAR})}
+    </select>
+
+</mapper>

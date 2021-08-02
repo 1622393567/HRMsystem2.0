@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>加班申请</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="../css/font.css">
+        <link rel="stylesheet" href="../css/xadmin.css">
+        <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../js/xadmin.js"></script>
+
+    </head>
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <form class="layui-form" th:action="@{upperforms}" method="get" th:object="${performs}">
+
+                    <div class="layui-form-item">
+                        <label  class="layui-form-label">
+                            <span class="x-red">*</span>序号
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="person_perfor_key"  name="person_perfor_key"  th:value="*{person_perfor_key}" class="layui-input">
+                        </div>
+                    </div>
+
+                  <div class="layui-form-item">
+                      <label  class="layui-form-label">
+                          <span class="x-red">*</span>工号
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" id="emp_id"  name="emp_id"  th:value="*{emp_id}" class="layui-input">
+                      </div>
+                  </div>
+                  <div class="layui-form-item">
+                      <label  class="layui-form-label">
+                          <span class="x-red">*</span>所在部门
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="text" name="dept_id" th:value="*{dept_id}" class="layui-input">
+                      </div>
+                      
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>应出勤天数
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text"  name="should_attendances"  th:value="*{should_attendances}" class="layui-input">
+                    </div>
+            
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>工作完成
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text"  name="work_completences" th:value="*{work_completences}" class="layui-input">
+                    </div>
+            
+                </div>
+                  
+                  <div class="layui-form-item">
+                      <label class="layui-form-label">
+                          <span class="x-red">*</span>工作态度
+                      </label>
+                      <div class="layui-input-inline">
+                          <input type="textarea" name="work_attitudes" th:value="*{work_attitudes}" class="layui-input">
+                      </div>
+                  </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>考核结果
+                </label>
+                <div class="layui-input-inline">
+                    <input type="textarea"  name="assess_result" th:value="*{assess_result}" class="layui-input">
+                </div>
+            </div>
+                  
+                  <div class="layui-form-item">
+                      <label class="layui-form-label">
+                      </label>
+
+                      <input type="submit" class="layui-btn" name="submit" value="提交">
+                      <button type="reset" class="layui-btn" lay-filter="reset" lay-submit="">
+                        重置
+                    </button>
+                  </div>
+              </form>
+            </div>
+        </div>
+
+    </body>
+
+</html>

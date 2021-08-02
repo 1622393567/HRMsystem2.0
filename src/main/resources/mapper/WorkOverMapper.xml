@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.WorkOverMapper">
+    <insert id="workoverApplication" parameterType="cn.edu.guet.bean.WorkOver">
+        INSERT into ADDWORK_APPLICATION_TABLE(emp_id,
+dept_id,
+emp_app_begin_time,
+emp_app_endding_time,
+addwork_content) VALUES(#{emp_id,jdbcType=VARCHAR},#{dept_id,jdbcType=VARCHAR},#{emp_app_begin_time,jdbcType=VARCHAR},
+        #{emp_app_endding_time,jdbcType=VARCHAR},#{addwork_content,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="viewAddchuli" resultType="cn.edu.guet.bean.WorkOver">
+        select * from ADDWORK_APPLICATION_TABLE
+    </select>
+
+
+    <delete id="deleteWork" parameterType="string">
+		DELETE FROM ADDWORK_APPLICATION_TABLE WHERE addwork_application_key=#{addwork_application_key,jdbcType=VARCHAR}
+	</delete>
+
+    <select id="getWorkById" resultType="cn.edu.guet.bean.WorkOver">
+		SELECT * FROM ADDWORK_APPLICATION_TABLE WHERE addwork_application_key=#{addwork_application_key,jdbcType=VARCHAR}
+	</select>
+
+    <update id="updateWork" parameterType="cn.edu.guet.bean.WorkOver">
+        update ADDWORK_APPLICATION_TABLE set
+dept_id=#{dept_id,jdbcType=VARCHAR},
+emp_app_begin_time=#{emp_app_begin_time,jdbcType=VARCHAR},
+emp_app_endding_time=#{emp_app_endding_time,jdbcType=VARCHAR},
+addwork_content=#{addwork_content,jdbcType=VARCHAR}
+where addwork_application_key=#{addwork_application_key,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="viewAddkaoqin" resultType="cn.edu.guet.bean.Addkaoqin">
+        select a.*,b.emp_name from ADDWORK_CHECKING_TABLE a,EMPLOYEES_INFO_TABLE b
+        where a.EMP_ID=b.EMP_ID and a.emp_id=#{emp_id,jdbcType=VARCHAR}
+        ORDER BY addwork_checking_key desc
+    </select>
+</mapper>

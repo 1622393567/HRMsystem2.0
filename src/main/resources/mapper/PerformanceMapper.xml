@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.PerformanceMapper">
+
+
+    <select id="viewPerform" resultType="cn.edu.guet.bean.Performance">
+        select a.*,b.EMP_NAME from PERSON_PERFOR_TABLE a,EMPLOYEES_INFO_TABLE b where a.EMP_ID=b.EMP_ID
+    </select>
+
+    <select id="personPerform" resultType="cn.edu.guet.bean.Performance">
+        select a.*,b.EMP_NAME from PERSON_PERFOR_TABLE a,EMPLOYEES_INFO_TABLE b where a.EMP_ID=b.EMP_ID and a.EMP_ID=#{emp_id,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updatePerform" parameterType="cn.edu.guet.bean.Performance">
+        update PERSON_PERFOR_TABLE
+        set should_attendances=#{should_attendances,jdbcType=VARCHAR},work_completences=#{work_completences,jdbcType=VARCHAR},
+        work_attitudes= #{work_attitudes,jdbcType=VARCHAR},assess_result= #{assess_result,jdbcType=VARCHAR}
+        where person_perfor_key=#{person_perfor_key,jdbcType=VARCHAR}
+    </update>
+
+    <select id="getPerform" resultType="cn.edu.guet.bean.Performance">
+        select * from PERSON_PERFOR_TABLE where person_perfor_key=#{person_perfor_key,jdbcType=VARCHAR}
+    </select>
+
+    <select id="performsave" statementType="CALLABLE">
+        {call perform_save(#{emp_id,mode=IN,jdbcType=VARCHAR},#{month,mode=IN,jdbcType=VARCHAR})}
+    </select>
+
+</mapper>
