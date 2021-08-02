@@ -13,7 +13,14 @@ spring:
     mode: HTML
     encoding: UTF-8
     cache: false
+
+    jpa:
+      show-sql: true
 mybatis:
-  type-aliases-package: com.example.bootdemo.bean
+  type-aliases-package: cn.edu.guet.bean
   mapper-locations: classpath:mapper/*Mapper.xml
+
+  logging:
+    level:
+      cn.edu.guet.mapper: DEBUG
 

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.ApplicantMapper">
+    <select id="viewApplicant" resultType="Applicant">
+        SELECT
+applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+        FROM Applicant_info_TABLE WHERE applicant_state='录入' ORDER BY applicant_info_key
+    </select>
+
+    <delete id="deleteApplicant" parameterType="String">
+       DELETE FROM Applicant_info_TABLE WHERE applicant_info_key=#{value}
+    </delete>
+
+    <update id="passApplicant" parameterType="String">
+        update Applicant_info_TABLE set applicant_state='待面试' where applicant_info_key=#{value}
+    </update>
+
+    <select id="searchApplicant" parameterType="String" resultType="Applicant">
+    select
+    applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+     from Applicant_info_TABLE where
+       applicant_state='录入' and
+       concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(applicant_info_key,applicant_name)
+              ,applicant_sex),applicant_state)
+              ,applicant_identify_type)
+              ,applicant_identify_number)
+              ,applicant_e_mail)
+              ,applicant_nation)
+              ,applicant_native_place)
+              ,applicant_birthday)
+              ,applicant_location)
+              ,applicant_edu_bgd)
+              ,applicant_entry_way)
+              ,applicant_edu_school)
+              ,applicant_post_intention)
+               like '%'||#{value}||'%'
+    </select>
+    <insert id="addApplicant" parameterType="Applicant">
+        <selectKey resultType="Integer" keyProperty="applicant_info_key" order="BEFORE">
+            select Applicant_Sequence.nextval FROM DUAL
+        </selectKey>
+        insert into Applicant_info_TABLE(
+        applicant_info_key,
+        applicant_name,
+        applicant_sex,
+        applicant_state,
+        applicant_identify_type,
+        applicant_identify_number,
+        applicant_phone_number,
+        applicant_e_mail,
+        applicant_nation,
+        applicant_native_place,
+        applicant_birthday,
+        applicant_location,
+        applicant_edu_bgd,
+        applicant_entry_way,
+        applicant_edu_school,
+        applicant_post_intention
+        )
+        values (
+         #{applicant_info_key,jdbcType=INTEGER},
+         #{applicant_name,jdbcType=VARCHAR},
+         #{applicant_sex,jdbcType=VARCHAR},
+         #{applicant_state,jdbcType=VARCHAR},
+         #{applicant_identify_type,jdbcType=VARCHAR},
+         #{applicant_identify_number,jdbcType=VARCHAR},
+         #{applicant_phone_number,jdbcType=VARCHAR},
+         #{applicant_e_mail,jdbcType=VARCHAR},
+         #{applicant_nation,jdbcType=VARCHAR},
+         #{applicant_native_place,jdbcType=VARCHAR},
+         #{applicant_birthday,jdbcType=VARCHAR},
+         #{applicant_location,jdbcType=VARCHAR},
+         #{applicant_edu_bgd,jdbcType=VARCHAR},
+         #{applicant_entry_way,jdbcType=VARCHAR},
+         #{applicant_edu_school,jdbcType=VARCHAR},
+        #{applicant_post_intention,jdbcType=VARCHAR}
+        )
+    </insert>
+    <update id="editApplicant" parameterType="Applicant" >
+        update Applicant_info_TABLE set
+        applicant_name=#{applicant_name,jdbcType=VARCHAR},
+        applicant_sex=#{applicant_sex,jdbcType=VARCHAR},
+        applicant_state=#{applicant_state,jdbcType=VARCHAR},
+        applicant_identify_type=#{applicant_identify_type,jdbcType=VARCHAR},
+        applicant_identify_number=#{applicant_identify_number,jdbcType=VARCHAR},
+        applicant_phone_number=#{applicant_phone_number,jdbcType=VARCHAR},
+        applicant_e_mail=#{applicant_e_mail,jdbcType=VARCHAR},
+        applicant_nation= #{applicant_nation,jdbcType=VARCHAR},
+        applicant_native_place=#{applicant_native_place,jdbcType=VARCHAR},
+        applicant_birthday=#{applicant_birthday,jdbcType=VARCHAR},
+        applicant_location=#{applicant_location,jdbcType=VARCHAR},
+        applicant_edu_bgd= #{applicant_edu_bgd,jdbcType=VARCHAR},
+        applicant_entry_way=#{applicant_entry_way,jdbcType=VARCHAR},
+        applicant_edu_school=#{applicant_edu_school,jdbcType=VARCHAR},
+        applicant_post_intention=#{applicant_post_intention,jdbcType=VARCHAR}
+       where applicant_info_key=#{applicant_info_key,jdbcType=INTEGER}
+    </update>
+    <select id="findByid" parameterType="INTEGER" resultType="Applicant">
+        SELECT
+        applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention,
+emp_id
+        FROM Applicant_info_TABLE WHERE applicant_info_key=#{id}
+    </select>
+
+    <select id="findmail" parameterType="String" resultType="String">
+        SELECT applicant_e_mail FROM Applicant_info_TABLE WHERE applicant_info_key=#{id}
+    </select>
+    <select id="findpost" parameterType="String" resultType="String">
+        SELECT applicant_post_intention FROM Applicant_info_TABLE WHERE applicant_info_key=#{id}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--***************************************************************************************************************************-->
+    <!--面试者-->
+    <select id="viewpassApplicant" resultType="Applicant">
+        SELECT
+        applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+        FROM Applicant_info_TABLE WHERE applicant_state='待面试' ORDER BY applicant_info_key
+    </select>
+
+    <update id="admitApplicant" parameterType="String">
+        update Applicant_info_TABLE set applicant_state='通过面试' where applicant_info_key=#{value}
+    </update>
+
+    <delete id="noadmitApplicant" parameterType="String">
+       DELETE FROM Applicant_info_TABLE WHERE applicant_info_key=#{value}
+    </delete>
+
+    <select id="findpassApplicant" parameterType="String" resultType="Applicant">
+    select
+    applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+
+    from Applicant_info_TABLE where
+       applicant_state='待面试' and
+       concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(applicant_info_key,applicant_name)
+              ,applicant_sex),applicant_state)
+              ,applicant_identify_type)
+              ,applicant_identify_number)
+              ,applicant_e_mail)
+              ,applicant_nation)
+              ,applicant_native_place)
+              ,applicant_birthday)
+              ,applicant_location)
+              ,applicant_edu_bgd)
+              ,applicant_entry_way)
+              ,applicant_edu_school)
+              ,applicant_post_intention)
+               like '%'||#{value}||'%'
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--***************************************************************************************************************************-->
+
+    <!--拟录取人员-->
+    <select id="viewadmitApplicant" resultType="Applicant">
+        SELECT
+        applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+        FROM Applicant_info_TABLE WHERE applicant_state='通过面试' ORDER BY applicant_info_key
+    </select>
+
+    <select id="findadmitApplicant" parameterType="String" resultType="Applicant">
+    select
+     applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention
+     from Applicant_info_TABLE where
+       applicant_state='通过面试' and
+       concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(applicant_info_key,applicant_name)
+              ,applicant_sex),applicant_state)
+              ,applicant_identify_type)
+              ,applicant_identify_number)
+              ,applicant_e_mail)
+              ,applicant_nation)
+              ,applicant_native_place)
+              ,applicant_birthday)
+              ,applicant_location)
+              ,applicant_edu_bgd)
+              ,applicant_entry_way)
+              ,applicant_edu_school)
+              ,applicant_post_intention)
+               like '%'||#{value}||'%'
+    </select>
+
+    <delete id="deleteadmitApplicant" parameterType="String">
+       DELETE FROM Applicant_info_TABLE WHERE applicant_info_key=#{value}
+    </delete>
+
+    <update id="toreport" parameterType="String">
+        update Applicant_info_TABLE set applicant_state='待报到' where applicant_info_key=#{value}
+    </update>
+
+
+
+
+
+    <!--***************************************************************************************************************************-->
+
+    <!--人力上报-->
+    <select id="viewreportApplicant" resultType="Applicant">
+        SELECT
+        applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention,
+emp_id
+        FROM Applicant_info_TABLE WHERE applicant_state='待报到' ORDER BY applicant_info_key
+    </select>
+
+    <select id="findreportApplicant" parameterType="String" resultType="Applicant">
+    select
+     applicant_info_key,
+applicant_name,
+applicant_sex,
+applicant_state,
+applicant_identify_type,
+applicant_identify_number,
+applicant_phone_number,
+applicant_e_mail,
+applicant_nation,
+applicant_native_place,
+applicant_birthday,
+applicant_location,
+applicant_edu_bgd,
+applicant_entry_way,
+applicant_edu_school,
+applicant_post_intention,
+emp_id
+     from Applicant_info_TABLE where
+       applicant_state='待报到' and
+       concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(concat(applicant_info_key,applicant_name)
+              ,applicant_sex),applicant_state)
+              ,applicant_identify_type)
+              ,applicant_identify_number)
+              ,applicant_e_mail)
+              ,applicant_nation)
+              ,applicant_native_place)
+              ,applicant_birthday)
+              ,applicant_location)
+              ,applicant_edu_bgd)
+              ,applicant_entry_way)
+              ,applicant_edu_school)
+              ,applicant_post_intention
+              ,emp_id
+              )
+               like '%'||#{value}||'%'
+    </select>
+
+    <delete id="deletereportApplicant" parameterType="String">
+       DELETE FROM Applicant_info_TABLE WHERE applicant_info_key=#{value}
+    </delete>
+
+    <select id="report" statementType="CALLABLE" >
+        {call SaveEmp(#{empid,mode=IN,jdbcType=VARCHAR},#{id,mode=IN,jdbcType=INTEGER})}
+    </select>
+    <select id="findempid"  parameterType="Integer" resultType="STRING">
+        select emp_id from Applicant_info_TABLE WHERE applicant_info_key=#{id}
+    </select>
+
+</mapper>

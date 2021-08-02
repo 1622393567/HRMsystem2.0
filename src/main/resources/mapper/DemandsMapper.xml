@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.mapper.DemandsMapper">
+    <select id="Getempid" resultType="Demands">
+        SELECT *FROM Demands_TABLE  ORDER BY demand_key
+    </select>
+
+    <delete id="deleteEmpid" parameterType="String">
+       DELETE FROM Demands_TABLE WHERE emp_id=#{empid}
+    </delete>
+    <delete id="deleteDemands" parameterType="String">
+       DELETE FROM Demands_TABLE WHERE demand_key=#{demand_key}
+    </delete>
+    <!--更新deptid和postid-->
+    <update id="updateA" parameterType="String">
+        update Applicant_info_TABLE set
+        emp_id=#{empid},
+        dept_id=(SELECT dept_id FROM Demands_TABLE  WHERE emp_id=#{empid}) ,
+        post_id=(SELECT post_id FROM Demands_TABLE  WHERE emp_id=#{empid})
+        where  applicant_info_key=#{id}
+    </update>
+
+    <insert id="addDemands" parameterType="demands">
+        <selectKey resultType="Integer" keyProperty="demand_key" order="BEFORE">
+            select Demands_Sequence.nextval FROM DUAL
+        </selectKey>
+        insert into Demands_TABLE(
+        demand_key,
+        dept_name,
+        emp_id,
+         dept_id,
+        post_id,
+         job
+        )
+        values (
+        #{demand_key,jdbcType=INTEGER},
+        #{dept_name,jdbcType=VARCHAR},
+        #{emp_id,jdbcType=VARCHAR},
+        #{dept_id,jdbcType=VARCHAR},
+        #{post_id,jdbcType=VARCHAR},
+        #{job,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <select id="findDemands" parameterType="String" resultType="Demands">
+    select*
+     from Demands_TABLE where
+       concat(concat(concat(concat(concat(demand_key,dept_name)
+              ,emp_id),dept_id)
+              ,post_id)
+              ,job)
+               like '%'||#{value}||'%'
+    </select>
+
+</mapper>
