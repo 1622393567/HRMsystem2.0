@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>考勤记录</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/hrmlog.js"></script>
+        <link rel="stylesheet" href="../css/font.css">
+        <link rel="stylesheet" href="../css/xadmin.css">
+        <script src="../lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../js/xadmin.js"></script>
+
+
+    </head>
+    <body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <label><a href="viewTime">打卡</a>
+                <a href="perdaliykaoqin">日常考勤</a>
+            </label>
+        </span>
+    </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+
+<!--                        <div class="layui-card-body ">-->
+<!--                            <form class="layui-form layui-col-space5" th:action="@{getKaoqin}" method="get">-->
+
+<!--                                <div class="layui-inline layui-show-xs-block">-->
+<!--                                    <input type="text" name="username"  placeholder="请输入关键词" autocomplete="off" class="layui-input">-->
+<!--                                </div>-->
+<!--                                <div class="layui-inline layui-show-xs-block">-->
+<!--                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                                <tr>
+                                  <th>
+                                    <input type="checkbox" name=""  lay-skin="primary">
+                                  </th>
+                                  <td>员工号</td>
+                                  <td>姓名</td>
+                                  <td>所在部门</td>
+
+                                  <td>上班时间</td>
+                                  <td>下班时间</td>
+                                  <td>备注</td>
+                                </tr>
+                              </thead>
+                              <tbody id="adminTbody">
+                                <tr th:each="daliyKaoqin : ${daliyKaoqins}">
+                                  <td>
+                                    <input type="checkbox" name=""  lay-skin="primary">
+                                  </td>
+                                  <td th:text="${daliyKaoqin.emp_id}"></td>
+                                  <td th:text="${daliyKaoqin.dept_id}"></td>
+                                  <td th:text="${daliyKaoqin.emp_name}"></td>
+                                  <td th:text="${daliyKaoqin.work_begin_time}"></td>
+                                  <td th:text="${daliyKaoqin.work_endding_time}"></td>
+                                  <td th:text="${daliyKaoqin.work_state}"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    <a class="num" href="###" id="firstPage">首页</a>
+                                    <a class="prev" href="###" id="prePage">&lt;&lt;</a>
+                                    <span class="current" id="currentPage"></span>
+                                    <a class="next" href="###"id="nextPage">&gt;&gt;</a>
+                                    <a class="num" href="###" id="lastPage">尾页</a>
+                                    <a class="num" href="###" id="totalpage"></a>
+                                    <a class="num"> <select  id="jumpWhere"> </select></a>
+                                    <a href="###" id="jumpPage" onclick="jumpPage()">跳转</a>
+                                    <a class="num" id="countsum"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </body>
+</html>
