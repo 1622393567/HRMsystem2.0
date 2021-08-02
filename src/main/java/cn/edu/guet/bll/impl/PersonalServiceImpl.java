@@ -3,6 +3,7 @@ package cn.edu.guet.bll.impl;
 import cn.edu.guet.bean.EmpAccount;
 import cn.edu.guet.bean.EmployeesInfo;
 import cn.edu.guet.bll.PersonalService;
+import cn.edu.guet.config.Log;
 import cn.edu.guet.mapper.PersonalMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
+    @Log("修改个人信息")
     public void updateInfo(EmployeesInfo employeesInfo) {
 
         this.personalMapper.updateInfo(employeesInfo);
@@ -37,6 +39,7 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
+    @Log("更改密码")
     public void updatePassword(EmpAccount empAccount) {
 
        personalMapper.updatePassword(empAccount);
