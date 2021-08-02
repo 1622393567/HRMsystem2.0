@@ -2,7 +2,7 @@ package cn.edu.guet.controller;
 
 import cn.edu.guet.bean.Sendsalary;
 import cn.edu.guet.bll.ISalaryService;
-import cn.edu.guet.utiltool.FileUtil;
+import cn.edu.guet.utiltool.FileEx;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,12 +25,12 @@ public class SalaryController {
     @RequestMapping("/importSendsalary")
     public String viewSalary(HttpServletRequest request, Model model){
         model.addAttribute("salary",salaryService.viewSalary());
-        return "salary";
+        return "salarysecond";
     }
     @PostMapping("/importSalary")
     public String  importSendsalary (@RequestParam("sendsalaryfile") MultipartFile file) throws NotFoundException {
         System.out.println(file);
-        List<Sendsalary> salaryList = FileUtil.importExcel(file,0,1, Sendsalary.class);
+        List<Sendsalary> salaryList = FileEx.importExcel(file,0,1, Sendsalary.class);
         //调用导入excel的方法，然后循环插入
         for (Sendsalary sendsalarys : salaryList){
             Sendsalary sendsalary=new Sendsalary();
@@ -48,7 +48,7 @@ public class SalaryController {
             System.out.println(sendsalary);
         }
         System.out.println("导入完成");
-        return "redirect:findSalary";//重定向到数据页面
+        return "redirect:importSendsalary";//重定向到数据页面
     }
 
 }

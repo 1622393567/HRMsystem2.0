@@ -53,7 +53,8 @@
 
                                   <td>上班时间</td>
                                   <td>下班时间</td>
-                                  <td>备注</td>
+                                  <td>上班状态</td>
+                                    <td>下班状态</td>
                                 </tr>
                               </thead>
                               <tbody id="adminTbody">
@@ -67,6 +68,7 @@
                                   <td th:text="${daliyKaoqin.work_begin_time}"></td>
                                   <td th:text="${daliyKaoqin.work_endding_time}"></td>
                                   <td th:text="${daliyKaoqin.work_state}"></td>
+                                    <td th:text="${daliyKaoqin.work_states}"></td>
                                 </tr>
                               </tbody>
                             </table>

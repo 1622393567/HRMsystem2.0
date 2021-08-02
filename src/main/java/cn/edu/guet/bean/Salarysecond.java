@@ -1,6 +1,6 @@
 package cn.edu.guet.bean;
 
-public class Salary {
+public class Salarysecond {
     private String datem;
     private String emp_id;
     private String emp_basic_salary;

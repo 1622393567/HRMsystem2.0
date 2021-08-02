@@ -9,7 +9,16 @@ public class DaliyKaoqin {
     private String work_begin_time;
     private String work_endding_time;
     private String work_state;
+    private String work_states;
     private String month;
+
+    public String getWork_states() {
+        return work_states;
+    }
+
+    public void setWork_states(String work_states) {
+        this.work_states = work_states;
+    }
 
     public String getMonth() {
         return month;

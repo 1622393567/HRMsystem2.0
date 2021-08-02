@@ -1,6 +1,6 @@
 package cn.edu.guet.bll.impl;
 
-import cn.edu.guet.bean.Salary;
+import cn.edu.guet.bean.Salarysecond;
 import cn.edu.guet.bean.Sendsalary;
 import cn.edu.guet.bll.ISalaryService;
 import cn.edu.guet.mapper.SalaryMapper;
@@ -15,7 +15,7 @@ public class SalaryServiceImpl implements ISalaryService {
     @Autowired
     private SalaryMapper salaryMapper;
     @Override
-    public List<Salary> viewSalary() {
+    public List<Salarysecond> viewSalary() {
 
         return salaryMapper.viewSalary();
     }
