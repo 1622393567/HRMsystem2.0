@@ -43,7 +43,6 @@
                             <th>职位</th>
                             <th>操作信息</th>
                             <th>操作时间</th>
-                            <th>查看详细信息</th>
                         </tr></thead>
                         <tbody id="adminTbody">
                         <tr th:each="CheckLogInfo,infoStat:${list}">
@@ -53,12 +52,6 @@
                             <td th:text="${CheckLogInfo.post_name}"></td>
                             <td th:text="${CheckLogInfo.emp_action}"></td>
                             <td th:text="${CheckLogInfo.create_time}"></td>
-                            <td>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn" onclick="layer.open({type: 2 ,area: ['500px', '300px'],title: 'Hello layer',shade: 0.6 ,maxmin: true ,anim: 1 ,content: 'indexpage'});    ">
-                                        <i class="layui-icon"></i>查看</button>
-                                </div>
-                            </td>
                         </tr>
                         </tbody>
                     </table>
